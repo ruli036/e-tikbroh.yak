@@ -15,7 +15,7 @@ import '../Helpers/widgets.dart';
 import '../Server/api_server.dart';
 
 class SplasScreenController extends GetxController {
-  double app_version = 1.3;
+  double app_version = 1.4;
   String app_version_db = '';
   String link =
       'https://play.google.com/store/apps/details?id=com.usyiah.e_tikbroh_yok&hl=en-ID';

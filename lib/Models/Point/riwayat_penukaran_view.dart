@@ -81,20 +81,20 @@ class RiwayatPenukaranView extends StatelessWidget {
             if (index < data.length) {
               return Padding(
                 padding:
-                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
                 child: Container(
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 2), // Offset of the shadow
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: const Offset(1, 1), // Offset of the shadow
                           ),
                         ],
                         color: Colors.white,
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
+                            const BorderRadius.all(Radius.circular(10))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [

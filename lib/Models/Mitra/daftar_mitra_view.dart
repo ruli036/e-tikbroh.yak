@@ -17,6 +17,10 @@ class DaftarMitraView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mitraC = Get.find<MitraController>();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.white, // Set your desired color here
+      statusBarIconBrightness: Brightness.dark, // or Brightness.dark
+    ));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

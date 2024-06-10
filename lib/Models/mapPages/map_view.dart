@@ -74,20 +74,33 @@ class MapLocation extends StatelessWidget {
           Positioned(
             bottom: 10,
             right: 0,
-            child: Container(
-              height: 30,
-              child: FloatingActionButton(
-                onPressed: () {
-                  Get.defaultDialog(
-                      title: "LOADING",
-                      barrierDismissible: false,
-                      content: LoadingView(text: "Mencari Lokasi Anda..."));
-                  cekKoneksi(() => myLocation());
-                },
-                child: const Icon(
-                  Icons.location_on,
-                  color: Colors.white,
-                  size: 15,
+            child: InkWell(
+              onTap: (){
+                Get.defaultDialog(
+                    title: "LOADING",
+                    barrierDismissible: false,
+                    content: LoadingView(text: "Mencari Lokasi Anda..."));
+                cekKoneksi(() => myLocation());
+              },
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColors.themeColor,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(color: AppColors.bagroudApp)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                  child: Row(
+                    children:const [
+                       Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      Text('Lokasi Saat Ini',style: TextStyle(color: Colors.white),)
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -62,6 +62,8 @@ class LoginController extends GetxController {
           "-----------------------------------------LOGIN----------------------------------");
       print(respone.statusCode);
       final hasil = json.decode(respone.body);
+      print("LOGIN");
+      print(hasil);
       if (hasil['status'] == true) {
         responLogin = ResponLogin.fromJson(hasil);
         await getFirebaseAuthToken(responLogin!.token);

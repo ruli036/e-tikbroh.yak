@@ -30,7 +30,7 @@ const String STORAGE_DATA_LOKASI = "lokasi";
 const String STORAGE_POIN_USER = "poin";
 const String STORAGE_NOMINAL_POIN = "rupiah";
 double IconSize = 25;
-double IconSizeMenu = 22;
+double IconSizeMenu = 25;
 FaIcon iconNotFound =
     const FaIcon(FontAwesomeIcons.fileCircleExclamation, color: Colors.grey);
 List<Widget> widgetOptions = <Widget>[
@@ -39,6 +39,12 @@ List<Widget> widgetOptions = <Widget>[
   const JemputSampahView(),
   const EdukasiView(),
   const PointView(),
+  const ProfileView(),
+];
+List<Widget> widgetOptionsbottommenu = <Widget>[
+  // const HomePageView(),
+  const HomeView(),
+  // const JemputSampahView(),
   const ProfileView(),
 ];
 
@@ -54,18 +60,18 @@ List IconBottomMenu = [
     FontAwesomeIcons.house,
     size: IconSizeMenu,
   ),
-  FaIcon(
-    FontAwesomeIcons.truck,
-    size: IconSizeMenu,
-  ),
-  FaIcon(
-    FontAwesomeIcons.book,
-    size: IconSizeMenu,
-  ),
-  FaIcon(
-    FontAwesomeIcons.arrowRightArrowLeft,
-    size: IconSizeMenu,
-  ),
+  // FaIcon(
+  //   FontAwesomeIcons.truck,
+  //   size: IconSizeMenu,
+  // ),
+  // FaIcon(
+  //   FontAwesomeIcons.book,
+  //   size: IconSizeMenu,
+  // ),
+  // FaIcon(
+  //   FontAwesomeIcons.arrowRightArrowLeft,
+  //   size: IconSizeMenu,
+  // ),
   FaIcon(
     FontAwesomeIcons.circleUser,
     size: IconSizeMenu,
@@ -141,18 +147,18 @@ List IconBottomMenuDriver = [
     FontAwesomeIcons.house,
     size: IconSizeMenu,
   ),
-  FaIcon(
-    FontAwesomeIcons.truck,
-    size: IconSizeMenu,
-  ),
-  FaIcon(
-    FontAwesomeIcons.book,
-    size: IconSizeMenu,
-  ),
-  FaIcon(
-    FontAwesomeIcons.arrowRightArrowLeft,
-    size: IconSizeMenu,
-  ),
+  // FaIcon(
+  //   FontAwesomeIcons.truck,
+  //   size: IconSizeMenu,
+  // ),
+  // FaIcon(
+  //   FontAwesomeIcons.book,
+  //   size: IconSizeMenu,
+  // ),
+  // FaIcon(
+  //   FontAwesomeIcons.arrowRightArrowLeft,
+  //   size: IconSizeMenu,
+  // ),
   FaIcon(
     FontAwesomeIcons.circleUser,
     size: IconSizeMenu,

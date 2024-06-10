@@ -351,41 +351,42 @@ class ProfilePageItem extends StatelessWidget {
                   ),
                 ),
                 const Divider(height: 0,thickness: 1,),
-              ],
-            )),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () => LogOut(),
-                child: Container(
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: AppColors.themeColor,
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        "LOGOUT",
-                        style: TextStyle(
-                          fontFamily: objectApp.fontApp,
-                          color: AppColors.whiteButton,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                        maxLines: 2,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10,top: 15),
+                  child: InkWell(
+                    onTap: () => LogOut(),
+                    child: Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                          color: AppColors.themeColor,
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            "LOGOUT",
+                            style: TextStyle(
+                              fontFamily: objectApp.fontApp,
+                              color: AppColors.whiteButton,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                            maxLines: 2,
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.logout,
+                            size: 20,
+                            color: AppColors.whiteButton,
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.logout,
-                        size: 20,
-                        color: AppColors.whiteButton,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
+              ],
+            )),
+
           ],
         ));
   }

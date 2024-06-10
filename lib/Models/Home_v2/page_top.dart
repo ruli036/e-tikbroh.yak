@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_tikbroh_yok/Controllers/home_controller.dart';
 import 'package:e_tikbroh_yok/Helpers/constans.dart';
 import 'package:e_tikbroh_yok/Helpers/helpers.dart';
+import 'package:e_tikbroh_yok/Models/Home/home_slide_iklan.dart';
+import 'package:e_tikbroh_yok/Models/Home/home_slide_iklan_mitra.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -134,56 +136,57 @@ class TopView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25, top: 0),
-                  child: Container(
-                    height: 120,
-                    width: size(context).width,
-                    decoration: BoxDecoration(
-                        color: AppColors.voulunter,
-                        border: Border.all(color: AppColors.color4),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: Stack(
-                      children: [
-                        const Positioned(
-                          left: 20,
-                          top: 10,
-                          child: Text(
-                            'e-tikbroh.yak\n',
-                            style: TextStyle(
-                              color: AppColors.titleText,
-                              fontFamily: objectApp.fontApp,
-                              fontSize: 22,
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 20,
-                          top: 50,
-                          child: Text(
-                            'Bumi Sehat,\nDompet Aman!',
-                            style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              color: AppColors.titleText,
-                              // fontFamily: objectApp.fontApp,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: Image.asset(
-                            'assets/volunteer.png',
-                            height: 100,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 25, right: 25, top: 0),
+                //   child:
+                //   Container(
+                //     height: 120,
+                //     width: size(context).width,
+                //     decoration: BoxDecoration(
+                //         color: AppColors.voulunter,
+                //         border: Border.all(color: AppColors.color4),
+                //         borderRadius:
+                //             const BorderRadius.all(Radius.circular(10))),
+                //     child: Stack(
+                //       children: [
+                //         const Positioned(
+                //           left: 20,
+                //           top: 10,
+                //           child: Text(
+                //             'e-tikbroh.yak\n',
+                //             style: TextStyle(
+                //               color: AppColors.titleText,
+                //               fontFamily: objectApp.fontApp,
+                //               fontSize: 22,
+                //             ),
+                //           ),
+                //         ),
+                //         const Positioned(
+                //           left: 20,
+                //           top: 50,
+                //           child: Text(
+                //             'Bumi Sehat,\nDompet Aman!',
+                //             style: TextStyle(
+                //               overflow: TextOverflow.ellipsis,
+                //               color: AppColors.titleText,
+                //               // fontFamily: objectApp.fontApp,
+                //               fontSize: 15,
+                //             ),
+                //           ),
+                //         ),
+                //         Positioned(
+                //           right: 0,
+                //           bottom: 0,
+                //           child: Image.asset(
+                //             'assets/volunteer.png',
+                //             height: 100,
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                ItemPageSlideIklanMitra(),
               ],
             ),
           )

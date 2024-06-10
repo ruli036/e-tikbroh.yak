@@ -12,6 +12,7 @@ class TambahLokasiJemputan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lokasiC = Get.find<LokasiController>();
+    lokasiC.namaTempat.text = "Lokasi ${lokasiC.count.value}";
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -30,94 +31,67 @@ class TambahLokasiJemputan extends StatelessWidget {
             right: 10,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10,bottom: 10),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  height: size(context).width / 2,
-                  child: MapLocation(),
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: AnimatedContainer(
+                  curve: Curves.bounceInOut,
+                  height:
+                      keyboardIsVisible(context) ? 0 : size(context).width / 2,
+                  duration: const Duration(
+                    microseconds: 1500,
+                  ),
+                  child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: MapLocation()),
                 ),
               ),
-              Container(
-                height: 80,
-                width: size(context).width,
-                child: Obx(
-                  () => Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: lokasiC.namaTempat,
-                          validator: (e) {
-                            if (e!.isEmpty) {
-                              return 'Masukkan Nama Tempat!';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.grey.withOpacity(0.3),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none),
-                            labelText: 'Nama Lokasi',
-                            labelStyle: TextStyle(
-                                fontSize: objectApp.labelFont,
-                                color: AppColors.hinttext),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        changeImg.value.toString(),
-                        style: TextStyle(color: Colors.transparent),
-                      ),
-                      InkWell(
-                        onTap: () => lokasiC.ambilFoto(),
-                        child: Container(
-                          height: size(context).width / 7,
-                          width: size(context).width / 5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                width: 2, color: Colors.grey.shade300),
-                            color: Colors.white,
-                            image: lokasiC.foto != null
-                                ? DecorationImage(
-                                    image: FileImage(lokasiC.foto),
-                                    fit: BoxFit.cover)
-                                : null,
-                          ),
-                          child: lokasiC.foto == null
-                              ? const Center(
-                                  child: FaIcon(FontAwesomeIcons.fileImage,
-                                      color: Colors.grey, size: 30),
-                                )
-                              : null,
-                        ),
-                      ),
-                    ],
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: TextFormField(
+                  controller: lokasiC.namaTempat,
+                  validator: (e) {
+                    if (e!.isEmpty) {
+                      return 'Masukkan Nama Tempat!';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey.withOpacity(0.3),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                    labelText: 'Nama Lokasi',
+                    labelStyle: TextStyle(
+                        fontSize: objectApp.labelFont,
+                        color: AppColors.hinttext),
                   ),
                 ),
               ),
-              TextFormField(
-                controller: lokasiC.alamat,
-                validator: (e) {
-                  if (e!.isEmpty) {
-                    return 'Masukkan Alamat Lokasi Anda!';
-                  }
-                  return null;
-                },
-                maxLines: 2,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.withOpacity(0.3),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none),
-                  labelText: 'Alamat Lokasi',
-                  labelStyle: TextStyle(
-                      fontSize: objectApp.labelFont, color: AppColors.hinttext),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: TextFormField(
+                  controller: lokasiC.alamat,
+                  validator: (e) {
+                    if (e!.isEmpty) {
+                      return 'Masukkan Alamat Lokasi Anda!';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey.withOpacity(0.3),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                    labelText: 'Alamat Lokasi',
+                    labelStyle: TextStyle(
+                        fontSize: objectApp.labelFont,
+                        color: AppColors.hinttext),
+                  ),
                 ),
               ),
               Padding(
@@ -138,10 +112,59 @@ class TambahLokasiJemputan extends StatelessWidget {
                         borderSide: BorderSide.none),
                     labelText: 'Detail Alamat Anda',
                     labelStyle: TextStyle(
-                        fontSize: objectApp.labelFont, color: AppColors.hinttext),
+                        fontSize: objectApp.labelFont,
+                        color: AppColors.hinttext),
                   ),
                 ),
               ),
+              const Text(
+                "Example: Rumah putih pagar biru",
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              ),
+              const Padding(
+                padding:  EdgeInsets.only(top: 8.0,bottom: 8),
+                child:   Text(
+                  "Foto Rumah",
+                  style: TextStyle(color: Colors.black, fontSize: 12),
+                ),
+              ),
+              Obx(
+                  () => Container(
+                    height: size(context).width /3,
+                    width: size(context).width,
+                    child: Stack(
+                      children: [
+                        Text(
+                          changeImg.value.toString(),
+                          style: TextStyle(color: Colors.transparent),
+                        ),
+                        InkWell(
+                          onTap: () => lokasiC.ambilFoto(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  width: 2, color: Colors.grey.shade300),
+                              color: Colors.white,
+                              image: lokasiC.foto != null
+                                  ? DecorationImage(
+                                      image: FileImage(lokasiC.foto),
+                                      fit: BoxFit.cover)
+                                  : null,
+                            ),
+                            child: lokasiC.foto == null
+                                ? const Center(
+                                    child: FaIcon(FontAwesomeIcons.fileImage,
+                                        color: Colors.grey, size: 30),
+                                  )
+                                : null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
             ],
           ),
         ),

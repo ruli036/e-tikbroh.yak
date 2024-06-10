@@ -274,7 +274,7 @@ class DaftarJemputanController extends GetxController {
       loading.value = false;
       pesan.value = "Token sudah kadaluarsaharap login kembali";
     } else if (respone.statusCode == 200) {
-      modelDetailJemputan = modelDetailJemputanFromJson(respone.body);
+      modelDetailJemputan = await modelDetailJemputanFromJson(respone.body);
       if (hasil['status'] == true) {
         loading.value = false;
       } else {

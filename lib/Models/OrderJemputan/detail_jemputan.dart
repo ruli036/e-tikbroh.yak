@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_tikbroh_yok/Controllers/MemberController/daftar_jemputan_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/MemberController/riwayat_jemputan_controller.dart';
 import 'package:e_tikbroh_yok/Helpers/constans.dart';
 import 'package:e_tikbroh_yok/Helpers/helpers.dart';
@@ -12,7 +13,6 @@ class DetailJemputanSampah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Detail Jemputan", style: TextStyle(
@@ -32,7 +32,8 @@ class ItemJemputan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
+    final orderC = Get.find<DaftarJemputanController>();
+    print(orderC.loading.value);
     return Obx(
       () {
         if (orderC.loading.value == true) {
@@ -72,7 +73,7 @@ class ItemTopDetailOrderan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
+    final orderC = Get.find<DaftarJemputanController>();
     return Container(
       color: Colors.white,
       child: Padding(
@@ -171,7 +172,7 @@ class DetailJemputan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
+    final orderC = Get.find<DaftarJemputanController>();
     return Container(
       color: Colors.white,
       child: Padding(
@@ -345,7 +346,7 @@ class ItemInfoPenjemputan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
+    final orderC = Get.find<DaftarJemputanController>();
     return Container(
       color: Colors.white,
       child: Padding(
@@ -469,7 +470,7 @@ class TrakingOrderan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderC = Get.find<OrderJemputanController>();
+    final orderC = Get.find<DaftarJemputanController>();
     return Container(
         color: Colors.white,
         child: Padding(

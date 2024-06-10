@@ -91,86 +91,88 @@ class ItemMutasi extends StatelessWidget {
             if (index < data.length) {
               return Padding(
                 padding:
-                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
-                child: Container(
-                    // height: 200,
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 2), // Offset of the shadow
-                          ),
-                        ],
-                        color: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.only(top: 5, left: 15),
-                        title: Text(
-                          "${formatDate(DateTime.tryParse(data[index].tanggal.toString()), 'EEEE')} , ${formatDate(DateTime.tryParse(data[index].tanggal.toString()), 'dd MMMM yyyy')}",
-                          style: const TextStyle(
-                            color: AppColors.titleText,
-                            fontFamily: objectApp.fontApp,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: Text(
-                                data[index].post == 'K'
-                                    ? 'Poin Keluar'
-                                    : 'Poin Masuk',
-                                style: const TextStyle(
-                                  color: AppColors.titleText,
-                                  fontFamily: objectApp.fontApp,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              '${data[index].keterangan}',
-                              style: const TextStyle(
-                                color: AppColors.titleText,
-                                // fontFamily: objectApp.fontApp,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              AppColors.themeColor.withOpacity(0.5),
-                          foregroundColor: Colors.white,
-                          child: FaIcon(
-                            data[index].post == 'M'
-                                ? FontAwesomeIcons.coins
-                                : FontAwesomeIcons.circleDollarToSlot,
-                            // color: Colors.white,
-                          ),
-                        ),
-                        trailing: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Rp ${Helpers().formater.format(int.parse(data[index].saldo))}',
+                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
+                child: Column(
+                  children: [
+                    Container(
+                        // height: 200,
+                        // decoration: BoxDecoration(
+                        //     boxShadow: [
+                        //       BoxShadow(
+                        //         color: Colors.grey.withOpacity(0.5),
+                        //         spreadRadius: 2,
+                        //         blurRadius: 5,
+                        //         offset: const Offset(0, 2), // Offset of the shadow
+                        //       ),
+                        //     ],
+                        //     color: Colors.white,
+                        //     borderRadius:
+                        //         const BorderRadius.all(Radius.circular(10))),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.only(top: 5, left: 15),
+                          title: Text(
+                            "${formatDate(DateTime.tryParse(data[index].tanggal.toString()), 'EEEE')} , ${formatDate(DateTime.tryParse(data[index].tanggal.toString()), 'dd MMMM yyyy')}",
                             style: const TextStyle(
                               color: AppColors.titleText,
                               fontFamily: objectApp.fontApp,
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 15,
                             ),
                           ),
-                        ),
-                      ),
-                    )),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  data[index].post == 'K'
+                                      ? 'Poin Keluar'
+                                      : 'Poin Masuk',
+                                  style: const TextStyle(
+                                    color: AppColors.titleText,
+                                    fontFamily: objectApp.fontApp,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '${data[index].keterangan}',
+                                style: const TextStyle(
+                                  color: AppColors.titleText,
+                                  // fontFamily: objectApp.fontApp,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          leading: CircleAvatar(
+                            backgroundColor:
+                                AppColors.themeColor.withOpacity(0.5),
+                            foregroundColor: Colors.white,
+                            child: FaIcon(
+                              data[index].post == 'M'
+                                  ? FontAwesomeIcons.coins
+                                  : FontAwesomeIcons.circleDollarToSlot,
+                              // color: Colors.white,
+                            ),
+                          ),
+                          trailing: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Rp ${Helpers().formater.format(int.parse(data[index].saldo))}',
+                              style: const TextStyle(
+                                color: AppColors.titleText,
+                                fontFamily: objectApp.fontApp,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        )),
+                    const Divider(thickness: 2,height: 5,)
+                  ],
+                ),
               );
             } else {
               if (mutasiC.isEndPage.value == true) {

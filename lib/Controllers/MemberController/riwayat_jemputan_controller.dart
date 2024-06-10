@@ -139,6 +139,7 @@ class OrderJemputanController extends GetxController {
       page.value = modelDaftarOrderJemputan!.nextpage.toString();
       totalPage.value = modelDaftarOrderJemputan!.totalpage.toString();
       urlnext.value = modelDaftarOrderJemputan!.urlnext.toString();
+      print("total data : ${modelDaftarOrderJemputan!.data.length * int.parse(totalPage.value)}");
       final hasil = json.decode(respone.body);
       dataOrder.value = await List<ItemOrder>.from(hasil['data'].map((x) => ItemOrder.fromJson(x))).obs;
       Liststatus allItem = await  Liststatus(code: "ALL", keterangan: "Semua data");

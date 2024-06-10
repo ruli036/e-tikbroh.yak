@@ -19,23 +19,24 @@ class PageMenuView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 10, top: 20,bottom: 20),
+            padding:
+                const EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 20),
             child: Row(
               children: [
                 Column(
                   children: [
                     InkWell(
-                      onTap: (){
-                        if(homePageC.level.value == 'member'){
+                      onTap: () {
+                        if (homePageC.level.value == 'member') {
                           Get.toNamed('order-jemputan');
-                        }else{
+                        } else {
                           homePageC.onItemTapped(1);
                         }
                       },
                       child: Container(
                         width: size(context).width / 2.2,
                         height: size(context).width / 1.5,
-                        decoration:const BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.themeColorV2light,
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           // boxShadow: [
@@ -52,6 +53,13 @@ class PageMenuView extends StatelessWidget {
                           child: Stack(
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Positioned(
+                                  bottom: 10,
+                                  right: 10,
+                                  child: Image.asset(
+                                    "assets/icon/jemput.png",
+                                    height: 140,
+                                  )),
                               const Positioned(
                                 left: 15,
                                 top: 10,
@@ -65,7 +73,7 @@ class PageMenuView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                               Positioned(
+                              Positioned(
                                 left: 15,
                                 top: 90,
                                 child: Text(
@@ -77,13 +85,6 @@ class PageMenuView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                  bottom: 10,
-                                  right: 10,
-                                  child: Image.asset(
-                                    "assets/icon/jemput.png",
-                                    height: 140,
-                                  ))
                             ],
                           ),
                         ),
@@ -91,13 +92,14 @@ class PageMenuView extends StatelessWidget {
                     ),
                     const Padding(padding: EdgeInsets.all(5)),
                     InkWell(
-                      onTap: (){
-                        ScaffoldMessenger.of(context).showSnackBar(homePageC.snackBar);
+                      onTap: () {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(homePageC.snackBar);
                       },
                       child: Container(
                         width: size(context).width / 2.2,
                         height: size(context).width / 4.5,
-                        decoration:const BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.themeColorV2light,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           // boxShadow: [
@@ -114,6 +116,13 @@ class PageMenuView extends StatelessWidget {
                           child: Stack(
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Positioned(
+                                  top: 20,
+                                  right: 10,
+                                  child: Image.asset(
+                                    "assets/icon/market.png",
+                                    height: 55,
+                                  )),
                               const Positioned(
                                 left: 10,
                                 top: 8,
@@ -128,7 +137,7 @@ class PageMenuView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                               Positioned(
+                              Positioned(
                                 left: 10,
                                 top: 35,
                                 child: Text(
@@ -140,13 +149,6 @@ class PageMenuView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                  top: 20,
-                                  right: 10,
-                                  child: Image.asset(
-                                    "assets/icon/market.png",
-                                    height: 55,
-                                  ))
                             ],
                           ),
                         ),
@@ -158,15 +160,18 @@ class PageMenuView extends StatelessWidget {
                 Column(
                     children: List.generate(3, (index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: 0, top: index==0?0:10, left: 10),
+                    padding: EdgeInsets.only(
+                        bottom: 0, top: index == 0 ? 0 : 10, left: 10),
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         homePageC.onTapSettingMenuV2(index, context);
                       },
                       child: Container(
                         width: size(context).width / 2.2,
-                        height:index==0?size(context).width / 2.4: size(context).width / 4.5,
-                        decoration:const BoxDecoration(
+                        height: index == 0
+                            ? size(context).width / 2.4
+                            : size(context).width / 4.5,
+                        decoration: const BoxDecoration(
                           color: AppColors.themeColorV2light,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           // boxShadow: [
@@ -184,12 +189,19 @@ class PageMenuView extends StatelessWidget {
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Positioned(
+                                  bottom: 10,
+                                  right: 5,
+                                  child: Image.asset(
+                                    IconTitleMenuV2[index],
+                                    height: index == 0 ? 90 : 60,
+                                  )),
+                              Positioned(
                                 left: 20,
-                                top: index==0?20:8,
+                                top: index == 0 ? 20 : 8,
                                 child: Text(
                                   TitleMenuV2[index].toString(),
                                   textAlign: TextAlign.center,
-                                  style:const TextStyle(
+                                  style: const TextStyle(
                                     color: AppColors.titleText,
                                     fontFamily: objectApp.fontApp,
                                     fontWeight: FontWeight.bold,
@@ -199,7 +211,7 @@ class PageMenuView extends StatelessWidget {
                               ),
                               Positioned(
                                 left: 20,
-                                top: index==0?45:35,
+                                top: index == 0 ? 45 : 35,
                                 child: Text(
                                   descTitleMenuV2[index],
                                   style: TextStyle(
@@ -209,13 +221,6 @@ class PageMenuView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                  bottom: 10,
-                                  right: 5,
-                                  child: Image.asset(
-                                    IconTitleMenuV2[index],
-                                    height: index==0?90:60,
-                                  ))
                             ],
                           ),
                         ),

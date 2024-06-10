@@ -105,7 +105,7 @@ class ListPointView extends StatelessWidget {
           children: List.generate(data.length, (index) {
             return Padding(
               padding: const EdgeInsets.only(
-                  top: 10, left: 10, right: 10, bottom: 10),
+                  top: 0, left: 10, right: 10, bottom: 0),
               child: InkWell(
                 onTap: () {
                   pointC.poin = data[index].poin;
@@ -116,114 +116,107 @@ class ListPointView extends StatelessWidget {
                   pointC.idProduk = data[index].id;
                   Get.toNamed('konfirmasi-penukara-poin');
                 },
-                child: Container(
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 2), // Offset of the shadow
-                          ),
-                        ],
-                        color: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: Stack(
-                      // crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        ListTile(
-                          contentPadding:
-                              const EdgeInsets.only(top: 5, left: 15),
-                          title: Text(
-                            '${data[index].namaProduk}',
-                            style: const TextStyle(
-                              color: AppColors.fontTitleColor,
-                              fontFamily: objectApp.fontApp,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  style: const TextStyle(
-                                      fontSize: 16.0, color: Colors.black),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: '${data[index].namaMitra}',
+                child: Column(
+                  children: [
+                    Container(
+                        child: Stack(
+                          // crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ListTile(
+                              contentPadding:
+                                  const EdgeInsets.only(top: 5, left: 15),
+                              title: Text(
+                                '${data[index].namaProduk}',
+                                style: const TextStyle(
+                                  color: AppColors.fontTitleColor,
+                                  fontFamily: objectApp.fontApp,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                          fontSize: 16.0, color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: '${data[index].namaMitra}',
+                                          style: const TextStyle(
+                                            color: AppColors.fontColor,
+                                            fontFamily: objectApp.fontApp,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5,bottom: 10,right: 20),
+                                    child: Text(
+                                      data[index].deskripsi,
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
                                         color: AppColors.fontColor,
                                         fontFamily: objectApp.fontApp,
                                         fontSize: 12,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5,bottom: 10,right: 20),
-                                child: Text(
-                                  data[index].deskripsi,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: AppColors.fontColor,
-                                    fontFamily: objectApp.fontApp,
-                                    fontSize: 12,
+                              leading: Container(
+                                width: 50,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: CachedNetworkImage(
+                                    alignment: Alignment.center,
+                                    imageUrl: data[index].image,
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) => Center(
+                                      child: ImagesLoading(
+                                        height: 54,
+                                        width: 60,
+                                      ),
+                                    ),
+                                    fit: BoxFit.contain,
+                                    width: size(context).width / 4,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                          leading: Container(
-                            width: 50,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: CachedNetworkImage(
-                                alignment: Alignment.center,
-                                imageUrl: data[index].image,
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: ImagesLoading(
-                                    height: 54,
-                                    width: 60,
+                            ),
+                            Positioned(
+                              top: 10,
+                              right: 10,
+                              child: Container(
+                                decoration:const  BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: AppColors.themeColor),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    '${data[index].poin} Poin',
+                                    style: const TextStyle(
+                                      color: AppColors.white,
+                                      fontFamily: objectApp.fontApp,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
-                                fit: BoxFit.contain,
-                                width: size(context).width / 4,
                               ),
                             ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: Container(
-                            decoration:const  BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: AppColors.themeColor),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                '${data[index].poin} Poin',
-                                style: const TextStyle(
-                                  color: AppColors.white,
-                                  fontFamily: objectApp.fontApp,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
+                          ],
+                        )),
+                    Divider(thickness: 2,)
+                  ],
+                ),
               ),
             );
           }),

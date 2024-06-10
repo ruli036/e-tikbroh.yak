@@ -1,7 +1,10 @@
 import 'package:e_tikbroh_yok/Controllers/home_controller.dart';
 import 'package:e_tikbroh_yok/Helpers/constans.dart';
 import 'package:e_tikbroh_yok/Helpers/helpers.dart';
+import 'package:e_tikbroh_yok/Models/Driver/jemputan_view.dart';
+import 'package:e_tikbroh_yok/Models/OrderJemputan/jemputan_view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,16 +16,37 @@ class HomePage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => homePageC.onWillPop(context),
       child: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         body: SafeArea(
-            child: Obx(() => homePageC.level.value == "member"
-                ? widgetOptions.elementAt(homePageC.selectedIndex.value)
-                : widgetOptionsDriver
-                    .elementAt(homePageC.selectedIndex.value))),
+            child: Obx(() =>   homePageC.level.value == "member"
+                ?widgetOptions
+                .elementAt(homePageC.selectedIndex.value):widgetOptionsDriver
+                .elementAt(homePageC.selectedIndex.value))),
+        floatingActionButtonLocation:
+        FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButton: Transform.scale(
+          scale: 1.1,
+          child: FloatingActionButton(
+            backgroundColor:AppColors.buttonColor ,
+            // heroTag: 'btmHome',
+            child: const FaIcon(
+              FontAwesomeIcons.truck,
+              size: 25,
+            ),
+            onPressed: () {
+              if(homePageC.level.value == "member"){
+                homePageC.onItemTapped(1);
+              }else{
+                homePageC.onItemTapped(1);
+              }
+            },
+          ),
+        ),
         bottomNavigationBar: Obx(
           () => BottomAppBar(
               shape: const CircularNotchedRectangle(),
-              notchMargin: 10,
+              notchMargin: 15,
               color: AppColors.white,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
@@ -40,7 +64,11 @@ class HomePage extends StatelessWidget {
                         : Colors.grey,
                     tooltip: TitleBottomMenu[index].toString().toTitleCase(),
                     onPressed: () {
-                      homePageC.onItemTapped(index);
+                      if(index == 0){
+                        homePageC.onItemTapped(index);
+                      }else{
+                        homePageC.onItemTapped(4);
+                      }
                     },
                   );
                 }),

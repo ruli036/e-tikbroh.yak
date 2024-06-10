@@ -35,7 +35,7 @@ class ApiUrl {
   static const tambahOrderJemputan = '${ServerUrl.urlServer}order/orderjemput';
   static const kategoriSampah = '${ServerUrl.urlServer}order/kategorisampah';
   static const detailOrderJemput =
-      '${ServerUrl.urlServer}order/detailorderjemput';
+        '${ServerUrl.urlServer}order/detailorderjemput';
   static const batalkanOrderan = '${ServerUrl.urlServer}order/batalorder';
 
   ///API mitra

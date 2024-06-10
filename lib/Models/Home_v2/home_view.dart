@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
               TopView(),
               PageMenuView(),
               KatalogView(),
-              ItemPageSlideIklanMitra(),
+              // ItemPageSlideIklanMitra(),
             ],
           )
         ),

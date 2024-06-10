@@ -33,9 +33,8 @@ class KonfirmasiPenukaranPoin extends StatelessWidget {
                       width: size(context).width,
                       decoration:const BoxDecoration(
                           color: AppColors.color2,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          boxShadow: const [
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          boxShadow:  [
                             BoxShadow(
                                 color: Colors.black45,
                                 blurRadius: 4,
@@ -163,7 +162,7 @@ class KonfirmasiPenukaranPoin extends StatelessWidget {
                     children: [
                       Positioned(
                         right: 0,
-                        top: 0,
+                        top: 25,
                         child: Container(
                           decoration:const BoxDecoration(
                               borderRadius:
@@ -261,10 +260,12 @@ class KonfirmasiPenukaranPoin extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: int.parse(pointC.poinUser.toString()) <
+      bottomNavigationBar:
+      int.parse(pointC.poinUser.toString()) <
               int.parse(pointC.poin.toString())
           ? null
-          : Padding(
+          :
+      Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

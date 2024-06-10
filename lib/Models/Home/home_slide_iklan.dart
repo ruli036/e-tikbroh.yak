@@ -81,23 +81,28 @@ class ItemImageSlide extends StatelessWidget {
       'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/raja-ampat-1024x683.jpg',
       'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/pulau-derawan.jpg'
     ];
-    imageSlider = dataImage
-        .map((e) => ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: e.toString(),
-                errorWidget: (context, url, error) => CircleAvatar(
-                  child:
-                      Image.asset("assets/logo-hijau.png", fit: BoxFit.cover),
+    imageSlider = dataImage2
+        .map((e) => Column(
+          children: [
+            ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedNetworkImage(
+                    imageUrl: e.toString(),
+                    errorWidget: (context, url, error) => CircleAvatar(
+                      child:
+                          Image.asset("assets/logo-hijau.png", fit: BoxFit.cover),
+                    ),
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        ImagesLoadingIklan(
+                      scaleHeigth: 6,
+                    ),
+                    fit: fitImage ? BoxFit.cover : BoxFit.contain,
+                    width: size(context).width,
+                  ),
                 ),
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    ImagesLoadingIklan(
-                  scaleHeigth: 6,
-                ),
-                fit: fitImage ? BoxFit.cover : BoxFit.contain,
-                width: size(context).width,
-              ),
-            ))
+            Text("adnlasndklasdnkladnlkasdnkladsnl")
+          ],
+        ))
         .toList();
     return CarouselSlider(
       options: CarouselOptions(

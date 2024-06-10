@@ -21,6 +21,7 @@ class LokasiController extends GetxController {
   TextEditingController detailTempat = TextEditingController();
   RxBool loading = true.obs;
   RxString pesan = ''.obs;
+  RxInt count = 1.obs;
   var foto, Authorization;
 
   final keyform = GlobalKey<FormState>();
@@ -70,6 +71,7 @@ class LokasiController extends GetxController {
         pesan.value = "Lokasi Jemputan Belum Ditambahkan";
         loading.value = false;
       }
+      count.value += daftarLokasiJemputan!.data.length;
     } else if (respone.statusCode == 404) {
       pesan.value = "Lokasi Jemputan Belum Ditambahkan";
       loading.value = false;
