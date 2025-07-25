@@ -1,9 +1,6 @@
 import 'package:e_tikbroh_yok/Controllers/home_controller.dart';
 import 'package:e_tikbroh_yok/Helpers/constans.dart';
 import 'package:e_tikbroh_yok/Helpers/helpers.dart';
-import 'package:e_tikbroh_yok/Models/Home/home_slide_iklan.dart';
-import 'package:e_tikbroh_yok/Models/Home/home_slide_iklan_mitra.dart';
-import 'package:e_tikbroh_yok/Models/Home_v2/katalog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -93,8 +90,7 @@ class PageMenuView extends StatelessWidget {
                     const Padding(padding: EdgeInsets.all(5)),
                     InkWell(
                       onTap: () {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(homePageC.snackBar);
+                        Get.toNamed('market-place');
                       },
                       child: Container(
                         width: size(context).width / 2.2,
@@ -102,14 +98,6 @@ class PageMenuView extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: AppColors.themeColorV2light,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.grey.withOpacity(0.5),
-                          //     spreadRadius: 2,
-                          //     blurRadius: 1,
-                          //     offset: const Offset(2, 0), // Offset of the shadow
-                          //   ),
-                          // ],
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 0),
@@ -167,7 +155,7 @@ class PageMenuView extends StatelessWidget {
                         homePageC.onTapSettingMenuV2(index, context);
                       },
                       child: Container(
-                        width: size(context).width / 2.2,
+                        width: size(context).width / 2.2 - 1,
                         height: index == 0
                             ? size(context).width / 2.4
                             : size(context).width / 4.5,

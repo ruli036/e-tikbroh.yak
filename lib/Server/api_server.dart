@@ -64,4 +64,5 @@ class ApiUrl {
   static const getPoin = '${ServerUrl.urlServer}profile/getpoin';
   static const ubahpassword = '${ServerUrl.urlServer}profile/ubahpassword';
   static const getmutasipoin = '${ServerUrl.urlServer}profile/getmutasipoin';
+  static const marketProducts = '${ServerUrl.urlServer}market/searchproducts';
 }

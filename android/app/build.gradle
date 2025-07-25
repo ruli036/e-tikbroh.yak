@@ -1,77 +1,69 @@
+// android/app/build.gradle (Groovy)
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.google.gms.google-services"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
+def localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
+    localPropertiesFile.withReader("UTF-8") { reader ->
         localProperties.load(reader)
     }
 }
 
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
+def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
+def flutterTargetSdkVersion = localProperties.getProperty("flutter.targetSdkVersion") ?: "34"
+def flutterNdkVersion = localProperties.getProperty("flutter.ndkVersion") ?: "25.2.9519653"
 
 android {
-    compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    namespace "com.usyiah.e_tikbroh_yok"
+    compileSdkVersion 35
+    ndkVersion "27.0.12077973"
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+            defaultConfig {
+                applicationId "com.usyiah.e_tikbroh_yok"
+                minSdkVersion 21
+                targetSdkVersion 35
+                versionCode 1
+                versionName "1.0"
+                multiDexEnabled true
+            }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.usyiah.e_tikbroh_yok"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
-
-    }
     signingConfigs {
         release {
+            def keystoreProperties = new Properties()
+            def keystoreFile = rootProject.file("key.properties")
+            if (keystoreFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystoreFile))
+            }
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
             storePassword keystoreProperties['storePassword']
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -80,9 +72,9 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation platform('com.google.firebase:firebase-bom:31.0.0')
-    implementation('com.google.firebase:firebase-analytics')
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }

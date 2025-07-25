@@ -71,17 +71,8 @@ class ItemImageSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("object Iklan");
-    print(dataImage);
     List<Widget> imageSlider;
-    List dataImage2 = [
-      'https://perumdatirtapase.com/uploads/slider/1643339250_fa3e060ce9c6f087b5f4.png',
-      'https://firebasestorage.googleapis.com/v0/b/smarttv-iklan.appspot.com/o/images%2F1672234413176?alt=media&token=cdca505d-cb46-40ce-82ef-8466d9ffb097',
-      'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/Danau-Toba-edited.jpg',
-      'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/raja-ampat-1024x683.jpg',
-      'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/pulau-derawan.jpg'
-    ];
-    imageSlider = dataImage2
+    imageSlider = dataImage
         .map((e) => Column(
           children: [
             ClipRRect(
@@ -100,7 +91,6 @@ class ItemImageSlide extends StatelessWidget {
                     width: size(context).width,
                   ),
                 ),
-            Text("adnlasndklasdnkladnlkasdnkladsnl")
           ],
         ))
         .toList();

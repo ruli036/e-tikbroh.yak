@@ -2,6 +2,8 @@ import 'package:e_tikbroh_yok/Models/Driver/detail_jemputan_view.dart';
 import 'package:e_tikbroh_yok/Models/Edukasi/edukasi_view.dart';
 import 'package:e_tikbroh_yok/Models/LokasiJemputan/lokasi_view.dart';
 import 'package:e_tikbroh_yok/Models/LokasiJemputan/tambah_lokasi.dart';
+import 'package:e_tikbroh_yok/Models/MarketPlace/detail_item.dart';
+import 'package:e_tikbroh_yok/Models/MarketPlace/market_place.dart';
 import 'package:e_tikbroh_yok/Models/Mitra/daftar_mitra_view.dart';
 import 'package:e_tikbroh_yok/Models/Mitra/detail_mitra_view.dart';
 import 'package:e_tikbroh_yok/Models/OrderJemputan/daftar_jemputan_view.dart';
@@ -142,5 +144,17 @@ final List<GetPage<dynamic>> route = [
       name: '/edukasi',
       page: () => const EdukasiView(),
       transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300)),
+  GetPage(
+      name: '/market-place',
+      page: () => const MarketPlacePage(),
+      transition: Transition.rightToLeft,
+      binding: MarketPlaceBindigs(),
+      transitionDuration: const Duration(milliseconds: 300)),
+  GetPage(
+      name: '/detail-market-place',
+      page: () => const DetailItemMarketPlacePage(),
+      transition: Transition.rightToLeft,
+      binding: MarketPlaceBindigs(),
       transitionDuration: const Duration(milliseconds: 300)),
 ];

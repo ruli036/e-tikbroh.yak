@@ -22,6 +22,7 @@ class HomeView extends StatelessWidget {
       statusBarIconBrightness: Brightness.light, // or Brightness.dark
     ));
     return Scaffold(
+      backgroundColor: AppColors.bg,
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: homePageC.refreshData,
@@ -30,7 +31,7 @@ class HomeView extends StatelessWidget {
               TopView(),
               PageMenuView(),
               KatalogView(),
-              // ItemPageSlideIklanMitra(),
+              SizedBox(height: 50,)
             ],
           )
         ),

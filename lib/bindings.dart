@@ -1,6 +1,7 @@
 import 'package:e_tikbroh_yok/Controllers/MemberController/lokasi_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/MemberController/riwayat_jemputan_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/home_controller.dart';
+import 'package:e_tikbroh_yok/Controllers/market_place_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/mitra_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/mutasi_poin_controller.dart';
 import 'package:e_tikbroh_yok/Controllers/point_controller.dart';
@@ -93,5 +94,12 @@ class MutasiBindigs extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => MutasiPointController());
+  }
+}
+
+class MarketPlaceBindigs extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => MarketPlaceController());
   }
 }

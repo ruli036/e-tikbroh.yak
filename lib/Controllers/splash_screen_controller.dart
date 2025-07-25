@@ -15,7 +15,7 @@ import '../Helpers/widgets.dart';
 import '../Server/api_server.dart';
 
 class SplasScreenController extends GetxController {
-  double app_version = 1.4;
+  String app_version = "1.6.0";
   String app_version_db = '';
   String link =
       'https://play.google.com/store/apps/details?id=com.usyiah.e_tikbroh_yok&hl=en-ID';
@@ -28,16 +28,11 @@ class SplasScreenController extends GetxController {
   Future cekVersion() async {
     try {
       final respone = await http.get(Uri.parse(ApiUrl.cekVersionApp));
-      print(respone.statusCode);
       if (respone.statusCode == 200) {
         final hasil = json.decode(respone.body);
-        print("hasil");
-        print(hasil);
         if (hasil['status'] == true) {
           app_version_db = hasil['version'];
-          print(app_version_db);
-          print(app_version);
-          if (app_version == double.parse(app_version_db)) {
+          if (app_version == app_version_db) {
             cekLogin().whenComplete(() {
               daftarLokasi(Authorization).then((value) {
                 timer();

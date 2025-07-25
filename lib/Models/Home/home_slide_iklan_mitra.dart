@@ -57,13 +57,6 @@ class ItemPageSlideIklanMitra extends StatelessWidget {
                   }
                 });
                 List<Widget> imageSlider;
-                List dataImage2 = [
-                  'https://perumdatirtapase.com/uploads/slider/1643339250_fa3e060ce9c6f087b5f4.png',
-                  'https://firebasestorage.googleapis.com/v0/b/smarttv-iklan.appspot.com/o/images%2F1672234413176?alt=media&token=cdca505d-cb46-40ce-82ef-8466d9ffb097',
-                  'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/Danau-Toba-edited.jpg',
-                  'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/raja-ampat-1024x683.jpg',
-                  'https://i2.wp.com/blog.tripcetera.com/id/wp-content/uploads/2020/10/pulau-derawan.jpg'
-                ];
                 imageSlider = result
                     .map((e) => InkWell(
                           onTap: () => Get.to(DaftarSemuaIklan()),
@@ -88,7 +81,7 @@ class ItemPageSlideIklanMitra extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                           left: 25, right: 25, top: 0),
                                       child: ImagesLoadingIklan(
-                                        scaleHeigth: 6,
+                                        scaleHeigth: 5,
                                       ),
                                     ),
                                     fit: BoxFit.cover,
@@ -100,23 +93,21 @@ class ItemPageSlideIklanMitra extends StatelessWidget {
                                 top: 0,
                                 left: 25,
                                 child: Container(
+                                    padding: const EdgeInsets.all(8.0),
                                   decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                           bottomRight: Radius.circular(10),
                                           topLeft: Radius.circular(10))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(e.title.toString(),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.justify,
-                                        style: const TextStyle(
-                                            color: AppColors.blackColor,
-                                            fontFamily: objectApp.fontApp,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
+                                  child: Text(e.title.toString(),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.justify,
+                                      style: const TextStyle(
+                                          color: AppColors.blackColor,
+                                          fontFamily: objectApp.fontApp,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold)),
                                 ),
                               )
                             ],
@@ -135,115 +126,6 @@ class ItemPageSlideIklanMitra extends StatelessWidget {
                   ),
                   items: imageSlider,
                 );
-
-                // print('object');
-                // print(result.length);
-                // return Padding(
-                //   padding: const EdgeInsets.only(top: 12,left: 20,right: 20,bottom: 20),
-                //   child: Container(
-                //     height: 200,
-                //     child: ListView(
-                //       scrollDirection: Axis.horizontal,
-                //       children: List.generate(result.length + 1, (index) {
-                //         if (index < result.length) {
-                //           return InkWell(
-                //             onTap: () {
-                //               Get.to(DetailIklanMitra(
-                //                   title: result[index].title,
-                //                   desc: result[index].deskripsi,
-                //                   image: result[index].gambar));
-                //             },
-                //             child: Column(
-                //               crossAxisAlignment: CrossAxisAlignment.start,
-                //               children: [
-                //                 Padding(
-                //                   padding:
-                //                       EdgeInsets.only(left: index == 0 ? 0 : 8),
-                //                   child: Container(
-                //                     height: size(context).height / 6,
-                //                     width: size(context).width - 50,
-                //                     child: ClipRRect(
-                //                       borderRadius: BorderRadius.circular(10),
-                //                       child: CachedNetworkImage(
-                //                         imageUrl: result[index].gambar.toString(),
-                //                         errorWidget: (context, url, error) =>
-                //                             CircleAvatar(
-                //                           child: Image.asset(
-                //                               "assets/logo-hijau.png",
-                //                               fit: BoxFit.cover),
-                //                         ),
-                //                         progressIndicatorBuilder:
-                //                             (context, url, downloadProgress) =>
-                //                                 ImagesLoadingIklan(
-                //                           scaleHeigth: 6,
-                //                         ),
-                //                         fit: BoxFit.cover,
-                //                         width: size(context).width,
-                //                       ),
-                //                     ),
-                //                   ),
-                //                 ),
-                //                 Padding(
-                //                   padding:
-                //                       const EdgeInsets.only(left: 8.0, top: 5),
-                //                   child: Text(
-                //                     data[index].title,
-                //                     style: const TextStyle(
-                //                         color: AppColors.themeColor,
-                //                         fontFamily: objectApp.fontApp,
-                //                         fontSize: 12,
-                //                         fontWeight: FontWeight.bold),
-                //                   ),
-                //                 ),
-                //                 Padding(
-                //                   padding: const EdgeInsets.only(left: 8.0),
-                //                   child: SizedBox(
-                //                     width: size(context).width - 100,
-                //                     child: Text(
-                //                       data[index].deskripsi,
-                //                       maxLines: 2,
-                //                       overflow: TextOverflow.ellipsis,
-                //                       textAlign: TextAlign.justify,
-                //                       style: const TextStyle(
-                //                           color: AppColors.fontColor,
-                //                           fontFamily: objectApp.fontApp,
-                //                           fontSize: 11,
-                //                           fontWeight: FontWeight.bold),
-                //                     ),
-                //                   ),
-                //                 ),
-                //               ],
-                //             ),
-                //           );
-                //         } else {
-                //           return Padding(
-                //             padding: const EdgeInsets.only(left: 8.0, bottom: 60),
-                //             child: Center(
-                //               child: ClipOval(
-                //                 child: InkWell(
-                //                   onTap: () {
-                //                     Get.to(DaftarSemuaIklan());
-                //                   },
-                //                   child: Container(
-                //                     height: size(context).width / 13,
-                //                     width: size(context).width / 13,
-                //                     color: AppColors.themeColor,
-                //                     child: const Center(
-                //                         child: FaIcon(
-                //                       FontAwesomeIcons.arrowRight,
-                //                       color: Colors.white,
-                //                           size: 20,
-                //                     )),
-                //                   ),
-                //                 ),
-                //               ),
-                //             ),
-                //           );
-                //         }
-                //       }),
-                //     ),
-                //   ),
-                // );
               }
             });
       }

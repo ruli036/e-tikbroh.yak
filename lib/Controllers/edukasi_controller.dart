@@ -30,9 +30,8 @@ class EdukasiController extends GetxController {
         headers: {'Authorization': Authorization});
     print(
         "------------------------DATA daftar Kategori Sampah--------------------------");
-    print(respone.statusCode);
+    print(Authorization);
     print(json.decode(respone.body));
-    modelKategoriSampah = modelKategoriSampahFromJson(respone.body);
     if (respone.statusCode == 401) {
       Get.defaultDialog(
         title: "INFO",
@@ -49,6 +48,7 @@ class EdukasiController extends GetxController {
       pesan.value = "Token sudah kadaluarsaharap login kembali";
     } else if (respone.statusCode == 200) {
       loading.value = false;
+      modelKategoriSampah = modelKategoriSampahFromJson(respone.body);
     } else if (respone.statusCode == 404) {
       pesan.value = "Kategori Sampah Belum Ditambahkan";
       loading.value = false;

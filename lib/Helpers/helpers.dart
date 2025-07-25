@@ -117,7 +117,7 @@ bool keyboardIsVisible(context) {
   return !(MediaQuery.of(context).viewInsets.bottom == 0.0);
 }
 
-size(context) {
+Size size(context) {
   return MediaQuery.of(context).size;
 }
 
@@ -299,7 +299,7 @@ Future<File?> getImagefromCamera(rasio) async {
     CroppedFile? cropeImage = await ImageCropper().cropImage(
         sourcePath: imageFile.path,
         compressQuality: 60,
-        aspectRatioPresets: rasio);
+    aspectRatio: rasio);
     if (cropeImage == null) {
       return null;
     } else {
@@ -323,7 +323,7 @@ Future<File?> getImagefromgalery(rasio) async {
     CroppedFile? cropeImage = await ImageCropper().cropImage(
         sourcePath: imageFile.path,
         compressQuality: 60,
-        aspectRatioPresets: rasio);
+        aspectRatio: rasio);
     if (cropeImage == null) {
       return null;
     } else {
