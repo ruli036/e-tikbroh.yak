@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -30,7 +31,6 @@ class Helpers {
 }
 
 formatDate(dateValue, format) {
-  final DateTime now = dateValue;
   final DateFormat formatter = DateFormat(format, 'id_ID');
   final String formatted = formatter.format(dateValue);
   return formatted;
@@ -68,6 +68,7 @@ class AppColors {
   static const bagroudHome = Color.fromARGB(255, 233, 236, 233);
   static const bagroudPoket = Color.fromARGB(255, 160, 216, 179);
   static const bagroudApp = Color.fromARGB(255, 160, 216, 179);
+
   // static const themeColor = Color.fromARGB(255, 8, 68, 26);
   // static const colorMenu = Color.fromARGB(255, 160, 216, 179).withOpacity(0.5);
   // static const themeColor = Color.fromARGB(255, 160, 216, 179);
@@ -78,7 +79,8 @@ class AppColors {
   static const gradientcolor1 = Color.fromARGB(255, 87, 133, 94);
   static const gradientcolor2 = Color.fromARGB(255, 116, 171, 124);
   static const gradientcolor3 = Color.fromARGB(255, 78, 119, 84);
-/// warna untuk home version 2
+
+  /// warna untuk home version 2
   static const themeColorV2dark = Color.fromARGB(255, 14, 14, 14);
   static const themeColorV2light = Colors.white;
   static const titleText = Color.fromARGB(255, 41, 41, 41);
@@ -91,12 +93,12 @@ class AppColors {
   static const bg = Color.fromARGB(255, 238, 242, 243);
   static const voulunter = Color.fromARGB(255, 238, 245, 238);
   static const white = Colors.white;
-
 }
 
 extension StringCasingExtension on String {
   String toCapitalized() =>
       length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+
   String toTitleCase() => replaceAll(RegExp(' +'), ' ')
       .split(' ')
       .map((str) => str.toCapitalized())
@@ -297,9 +299,7 @@ Future<File?> getImagefromCamera(rasio) async {
     var fileImage = result.path;
     File imageFile = File(fileImage);
     CroppedFile? cropeImage = await ImageCropper().cropImage(
-        sourcePath: imageFile.path,
-        compressQuality: 60,
-    aspectRatio: rasio);
+        sourcePath: imageFile.path, compressQuality: 60, aspectRatio: rasio);
     if (cropeImage == null) {
       return null;
     } else {
@@ -321,9 +321,7 @@ Future<File?> getImagefromgalery(rasio) async {
     var fileImage = result.files.single.path;
     File imageFile = File(fileImage!);
     CroppedFile? cropeImage = await ImageCropper().cropImage(
-        sourcePath: imageFile.path,
-        compressQuality: 60,
-        aspectRatio: rasio);
+        sourcePath: imageFile.path, compressQuality: 60, aspectRatio: rasio);
     if (cropeImage == null) {
       return null;
     } else {
@@ -451,7 +449,7 @@ RxInt cek = 0.obs;
 List<Marker> myMarker = [];
 RxInt changeImg = 0.obs;
 
-onMapTap(LatLng poinTap)async {
+onMapTap(LatLng poinTap) async {
   print(poinTap.toString());
   // myMarker.clear();
   // cek += 1;
@@ -517,7 +515,8 @@ class MapHelper {
     };
   }
 
-  static Future<bool> isWithinRadius({double latitude = 0.0, double longitude = 0.0}) async {
+  static Future<bool> isWithinRadius(
+      {double latitude = 0.0, double longitude = 0.0}) async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -527,7 +526,7 @@ class MapHelper {
       }
     }
 
-    if(latitude != 0.0){
+    if (latitude != 0.0) {
       double distance = Geolocator.distanceBetween(
         latitude,
         longitude,
@@ -535,7 +534,7 @@ class MapHelper {
         95.3191,
       );
       return distance <= 1000;
-    }else{
+    } else {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
@@ -547,10 +546,33 @@ class MapHelper {
       );
       return distance <= 1000;
     }
-
-
-
   }
 }
 
 final validasi20karakter = RegExp(r'^.{1,20}$');
+
+void kirimPesanWhatsApp({
+  required String nomorAdmin,
+  required String kodePesanan,
+  required String namaPemesan,
+  required String produk,
+}) async {
+  final String pesan = Uri.encodeComponent('''
+Halo Admin, saya ingin konfirmasi pesanan dengan detail berikut:
+
+Kode Pesanan: $kodePesanan
+Nama Pemesan: $namaPemesan
+Produk: $produk 
+
+Terima kasih.
+''');
+
+  final String url =
+      'https://wa.me/${nomorAdmin.replaceAll('+', '')}?text=$pesan';
+
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Tidak bisa membuka WhatsApp.';
+  }
+}

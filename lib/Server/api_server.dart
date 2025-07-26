@@ -65,4 +65,17 @@ class ApiUrl {
   static const ubahpassword = '${ServerUrl.urlServer}profile/ubahpassword';
   static const getmutasipoin = '${ServerUrl.urlServer}profile/getmutasipoin';
   static const marketProducts = '${ServerUrl.urlServer}market/searchproducts';
+  static const orderProducts = '${ServerUrl.urlServer}market/sales';
 }
+
+var data = {
+  "status": true,
+  "message": "Data berhasil disimpan",
+  "data": {
+    "kode": "ET-240904164249-9099",
+    "nama_pemesan": "Keyla Dzakira Azzalea",
+    "produk": "Dompet Kecil",
+    "wa_admin": "+6281262956695",
+    "waktu_pesanan": "2024-09-04 16:59:19"
+    }
+};

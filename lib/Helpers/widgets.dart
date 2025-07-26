@@ -549,8 +549,13 @@ class DaftarLokasiJemputanChace extends StatelessWidget {
 class AlertSuccesView extends StatelessWidget {
   String text;
   final MaterialColor colors;
-  AlertSuccesView({Key? key, required this.text, required this.colors})
-      : super(key: key);
+  final IconData? icon;
+  AlertSuccesView({
+    Key? key,
+    required this.text,
+    required this.colors,
+    this.icon = FontAwesomeIcons.circleCheck,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -561,7 +566,7 @@ class AlertSuccesView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: FaIcon(
-              FontAwesomeIcons.circleCheck,
+              icon,
               color: colors,
               size: 50,
             ),

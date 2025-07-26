@@ -5,6 +5,7 @@ import 'package:e_tikbroh_yok/Helpers/helpers.dart';
 import 'package:e_tikbroh_yok/Helpers/widgets.dart';
 import 'package:e_tikbroh_yok/Json/MemberJson/model_market_place.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -37,7 +38,7 @@ class DetailItemMarketPlacePage extends StatelessWidget {
                     width: double.infinity,
                   ),
                 ),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 width: size(context).width,
               ),
             ),
@@ -88,7 +89,7 @@ class DetailItemMarketPlacePage extends StatelessWidget {
                                                 Center(
                                                     child:
                                                         CircularProgressIndicator()),
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                             width: size(context).width,
                                           ),
                                         ),
@@ -169,14 +170,35 @@ class DetailItemMarketPlacePage extends StatelessWidget {
                         ),
                       ],
                     )),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.buttonColor,
-                    borderRadius: BorderRadius.circular(15)
+                InkWell(
+                  onTap: (){
+                    Get.defaultDialog(
+                      title: "INFO",
+                      barrierDismissible: true,
+                      content: AlertSuccesView(
+                        text: "Apakah anda yakin ingin memesan produk ini?",
+                        colors: Colors.green,
+                        icon: FontAwesomeIcons.boxesPacking,
+                      ),
+                      confirmTextColor: AppColors.textColor,
+                      textCancel: "Cancel",
+                      textConfirm: "Pesan",
+                      onConfirm: () { 
+                        Get.back();
+                        marketPlaceController.orderProduct(idProduk: marketPlaceController.item.value.id??"");
+                      },
+
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.buttonColor,
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    margin: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                    child: Center(child: Text("Pesan Sekarang",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),) ,),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 12),
-                  margin: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
-                  child: Center(child: Text("Pesan Sekarang",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),) ,),
                 ),
                 Container(
                     padding: const EdgeInsets.symmetric(
