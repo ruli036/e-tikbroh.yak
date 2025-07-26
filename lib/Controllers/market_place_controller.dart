@@ -15,33 +15,42 @@ class MarketPlaceController extends GetxController {
   RxBool loading = true.obs;
   RxString pesan = ''.obs;
   String authorization = '';
-  Rx<ModelListDataMarketPlace?> dataMarketPlace = Rx<ModelListDataMarketPlace?>(null);
-  RxList<ItemData> listData= <ItemData>[].obs;
+  Rx<ModelListDataMarketPlace?> dataMarketPlace =
+      Rx<ModelListDataMarketPlace?>(null);
+  RxList<ItemData> listData = <ItemData>[].obs;
   RxString searchQuery = ''.obs;
   ScrollController scrollController = ScrollController();
   RxString selectedImage = ''.obs;
   Rx<ItemData> item = ItemData().obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     authorization = GetStorage().read(STORAGE_TOKEN);
     debounce(searchQuery, (String value) {
-      getDataMarketPlace(search: value);
+      getDataMarketPlace(search: value, reset: value.isEmpty ? true : false);
     }, time: Duration(milliseconds: 500));
     getDataMarketPlace();
-    scrollController.addListener((){
-      if(scrollController.position.pixels == scrollController.position.maxScrollExtent && dataMarketPlace.value!.totalpage != dataMarketPlace.value!.nextpage ){
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+              scrollController.position.maxScrollExtent &&
+          dataMarketPlace.value!.totalpage != dataMarketPlace.value!.nextpage) {
         getDataMarketPlace(page: dataMarketPlace.value!.nextpage.toString());
       }
     });
   }
 
-  Future<void> getDataMarketPlace({String search = "",String page=""}) async {
-    loading.value = page ==""?true:false;
-    final response = await http.post(Uri.parse("${ApiUrl.marketProducts}/$page"),
-        headers: {'Authorization': authorization}, body: {'search': search});
-
+  Future<void> getDataMarketPlace(
+      {String search = "", String page = "", bool reset = false}) async {
+    loading.value = page == "" ? true : false;
+    final response = await http.post(
+        Uri.parse("${ApiUrl.marketProducts}/$page"),
+        headers: {'Authorization': authorization},
+        body: {'search': search});
+    if (search.isNotEmpty || reset) {
+      listData.clear();
+    }
     if (response.statusCode == 401) {
       Get.defaultDialog(
         title: "INFO",
@@ -57,7 +66,7 @@ class MarketPlaceController extends GetxController {
       pesan.value = "Token sudah kadaluarsa, harap login kembali";
     } else if (response.statusCode == 200) {
       dataMarketPlace.value = modelListDataMarketPlace(response.body);
-      listData.addAll(dataMarketPlace.value?.data??[]);
+      listData.addAll(dataMarketPlace.value?.data ?? []);
     } else if (response.statusCode == 404) {
       pesan.value = "Data Belum Ditambahkan";
       dataMarketPlace.value = null;
@@ -83,9 +92,10 @@ class MarketPlaceController extends GetxController {
       content: LoadingView(text: "Pesanan sedang di muat"),
       confirmTextColor: AppColors.textColor,
     );
-    try{
+    try {
       final response = await http.post(Uri.parse(ApiUrl.orderProducts),
-          headers: {'Authorization': authorization}, body: {'idproduk': idProduk});
+          headers: {'Authorization': authorization},
+          body: {'idproduk': idProduk});
 
       if (response.statusCode == 401) {
         Get.back();
@@ -102,12 +112,13 @@ class MarketPlaceController extends GetxController {
         );
       } else if (response.statusCode == 200) {
         Get.back();
-        ModelOrderProduct modelOrderProduct = ModelOrderProduct.fromJson(jsonDecode(response.body));
+        ModelOrderProduct modelOrderProduct =
+            ModelOrderProduct.fromJson(jsonDecode(response.body));
         kirimPesanWhatsApp(
-          nomorAdmin: modelOrderProduct.data?.waAdmin??"",
-          kodePesanan: modelOrderProduct.data?.kode??"",
-          namaPemesan: modelOrderProduct.data?.namaPemesan??"",
-          produk: modelOrderProduct.data?.produk??"",
+          nomorAdmin: modelOrderProduct.data?.waAdmin ?? "",
+          kodePesanan: modelOrderProduct.data?.kode ?? "",
+          namaPemesan: modelOrderProduct.data?.namaPemesan ?? "",
+          produk: modelOrderProduct.data?.produk ?? "",
         );
       } else {
         Get.back();
@@ -119,7 +130,7 @@ class MarketPlaceController extends GetxController {
           ),
         );
       }
-    }catch(e){
+    } catch (e) {
       Get.back();
       Get.defaultDialog(
         title: "ERROR",
@@ -129,7 +140,5 @@ class MarketPlaceController extends GetxController {
         ),
       );
     }
-
   }
-
 }

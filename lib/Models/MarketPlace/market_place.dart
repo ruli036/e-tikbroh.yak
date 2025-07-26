@@ -43,8 +43,10 @@ class MarketPlacePage extends StatelessWidget {
                     suffixIcon: IconButton(
                       icon: Icon(Icons.close),
                       onPressed: () {
-                        searchController.clear();
-                        marketPlaceController.getDataMarketPlace();
+                        if(searchController.text.isNotEmpty){
+                          searchController.clear();
+                          marketPlaceController.getDataMarketPlace(reset: true);
+                        }
                       },
                     ),
                   ),
